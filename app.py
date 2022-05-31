@@ -14,11 +14,7 @@ def home():
     parse_to_dicc(df)
     
     return render_template("mostrar_datos.html")
-#holaaa
 
-
-
-
-
-
+if __name__ == "__main__" :
+    app.run(debug=True)
 
