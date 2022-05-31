@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,32 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>siuuu</title>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"
-      integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
     <div class="w-30 h-20 mt-40 mx-80">
       <canvas id="MiGrafica" width="30" height="20"></canvas>
-      </div>
+    </div>
   </body>
   <script>
     let miCanvas = document.getElementById("MiGrafica").getContext("2d");
 
+    const datajs = JSON.parse("{{ datajson }}".replace(/&#34;/g, '"'));
+
+    console.log(datajs);
+    var labelsg = datajs.map(function (e) {
+      return e.fecha;
+    });
+    console.log(labelsg);
+    var datag = datajs.map(function (e) {
+      return e.autos;
+    });
+
     var chart = new Chart(miCanvas, {
       type: "line",
       data: {
-        labels: ["Lunes", "Martes", "Miercoles", "Jueves","Viernes","Sabado","Domingo"],
+        labels: labelsg,
         datasets: [
           {
             label: "Trafico",
             backgroundColor: "rgb(0,0,0)",
             boderColor: "rgb(0,255,0)",
-            data: [8060, 10453, 11654,9843,10345,9843,12455],
+            data: datag,
           },
         ],
       },
