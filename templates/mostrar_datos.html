@@ -103,9 +103,12 @@
     </div>
     <div id="Grafico" class="flex flex-col w-full h-full items-center">
       <p class="mt-5 font-Montserrat font-bold underline">Grafico</p>
-      <div class="w-4/5 h-auto mx-80">
-        <canvas id="MiGrafica" width="300" height="300"></canvas>
+      <div class="w-3/5 h-3/5 lg:hidden">
+        <canvas id="MiGrafica" width="100" height="100"></canvas>
       </div>
+    </div>
+    <div class="lg:w-3/5 h-3/5 mx-72">
+      <canvas id="MiGrafica2" width="300" height="200"></canvas>
     </div>
     <footer class="m-6 text-center bg-gray-700 text-sm p-2 mt-40">
       <div class="text-center items-center space-x-4">
@@ -177,4 +180,25 @@
       },
     });
   </script>
+    <script>
+
+      let miCanvas2 = document.getElementById("MiGrafica2").getContext("2d");
+  
+      console.log(miCanvas2);
+  
+      var chart = new Chart(miCanvas2, {
+        type: "line",
+        data: {
+          labels: ["L", "M", "M", "J", "V", "S", "D"],
+          datasets: [
+            {
+              label: "Trafico",
+              backgroundColor: "rgb(0,0,0)",
+              boderColor: "rgb(0,255,0)",
+              data: [8060, 10453, 11654, 9843, 10345, 9843, 12455],
+            },
+          ],
+        },
+      });
+    </script>
 </html>
