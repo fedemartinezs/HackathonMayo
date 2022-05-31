@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/flowbite@1.4.7/dist/flowbite.min.css"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"
+      integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          fontFamily: {
+            sans: ["Montserrat"],
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-red-300">
+    <nav class="bg-red-400 text-left h-10 pt-2 pl-5 font-bold font-Montserrat">
+      Sistema de Medición de Flujo Circular
+    </nav>
+    <div id="info" class="m-10">
+      <h1 class="text-4xl font-bold">Analiza el flujo de tránsito</h1>
+      <h2 class="text-3xl italic mt-4">En tiempo real</h2>
+    </div>
+    <div class="flex flex-col w-full h-full items-center">
+      <button
+        id="dropdownDefault"
+        data-dropdown-toggle="dropdown"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        type="button"
+      >
+        Filtro
+        <svg
+          class="w-4 h-4 ml-2"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"
+          ></path>
+        </svg>
+      </button>
+      <!-- Dropdown menu -->
+      <div
+        id="dropdown"
+        class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700"
+      >
+        <ul
+          class="py-1 text-sm text-gray-700 dark:text-gray-200"
+          aria-labelledby="dropdownDefault"
+        >
+          <li>
+            <a
+              href="#"
+              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >Avenidas</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >Tipo de Vehiculo</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >Rango de Tiempo</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="Grafico" class="flex flex-col w-full h-full items-center">
+      <p class="mt-5 font-Montserrat font-bold underline">Grafico</p>
+      <div class="w-4/5 h-auto mx-80">
+        <canvas id="MiGrafica" width="300" height="400"></canvas>
+      </div>
+    </div>
+    <div class="m-6 text-center bg-red-700 text-sm p-2">
+      <a
+        class="text-blue-800 underline-offset-2"
+        mr-3
+        href="https://github.com/fedemartinezs"
+        target="_blank"
+      >
+        <i class="fab fa-github"> </i>
+        GitHub
+      </a>
+      <a
+        class="text-blue-800 underline-offset-2"
+        href="https://twitter.com/fedemartinezs"
+        target="_blank"
+      >
+        <i class="fab fa-twitter"> </i>
+        Twitter
+      </a>
+    </div>
+    <p class="text-slate-700 mt-2">© Los 404.</p>
+    <script>
+      // obtener elemento HTML(boton)
+      const buttonElement = document.querySelector("button");
+      // console.log(buttonElement);
+
+      // definir la funcion
+      function onButtonClick() {
+        // tomar numero
+        const contactNumber = document.getElementById("contact-number").value;
+
+        // tomar mensaje
+        const message = document.getElementById("message").value;
+
+        //reemplazar saltos de linea por cod para brk line en la URL
+        const res = message.split("\n").join("%0a");
+        // console.log(res);
+
+        // armar enlace
+        const link = `https://wa.me/${contactNumber}?text=${res}`;
+
+        // abrir enlace en nueva pestanha
+        window.open(link, "_blank");
+      }
+
+      // agregar Event Listener al boton
+      buttonElement.addEventListener("click", onButtonClick);
+    </script>
+  </body>
+
+  <script>
+    let miCanvas = document.getElementById("MiGrafica").getContext("2d");
+
+    console.log(miCanvas);
+
+    var chart = new Chart(miCanvas, {
+      type: "line",
+      data: {
+        labels: [
+          "Lunes",
+          "Martes",
+          "Miercoles",
+          "Jueves",
+          "Viernes",
+          "Sabado",
+          "Domingo",
+        ],
+        datasets: [
+          {
+            label: "Trafico",
+            backgroundColor: "rgb(0,0,0)",
+            boderColor: "rgb(0,255,0)",
+            data: [8060, 10453, 11654, 9843, 10345, 9843, 12455],
+          },
+        ],
+      },
+    });
+  </script>
+</html>
