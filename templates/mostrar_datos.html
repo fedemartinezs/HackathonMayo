@@ -127,33 +127,6 @@
       </a>
     </div>
     <p class="text-slate-700 mt-2">© Los 404.</p>
-    <script>
-      // obtener elemento HTML(boton)
-      const buttonElement = document.querySelector("button");
-      // console.log(buttonElement);
-
-      // definir la funcion
-      function onButtonClick() {
-        // tomar numero
-        const contactNumber = document.getElementById("contact-number").value;
-
-        // tomar mensaje
-        const message = document.getElementById("message").value;
-
-        //reemplazar saltos de linea por cod para brk line en la URL
-        const res = message.split("\n").join("%0a");
-        // console.log(res);
-
-        // armar enlace
-        const link = `https://wa.me/${contactNumber}?text=${res}`;
-
-        // abrir enlace en nueva pestanha
-        window.open(link, "_blank");
-      }
-
-      // agregar Event Listener al boton
-      buttonElement.addEventListener("click", onButtonClick);
-    </script>
   </body>
 
   <script>
