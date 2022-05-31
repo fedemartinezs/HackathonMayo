@@ -37,8 +37,8 @@
       };
     </script>
   </head>
-  <body class="bg-red-300">
-    <nav class="bg-red-400 text-left h-10 pt-2 pl-5 font-bold font-Montserrat">
+  <body class="bg-gray-200">
+    <nav class="bg-gray-400 text-left h-10 pt-2 pl-5 font-bold font-Montserrat">
       Sistema de Medición de Flujo Circular
     </nav>
     <div id="info" class="m-10">
@@ -49,7 +49,7 @@
       <button
         id="dropdownDefault"
         data-dropdown-toggle="dropdown"
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        class="text-white bg-stone-600 hover:bg-stone-600 focus:ring-4 focus:outline-none focus:ring-bg-stone-800 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-stone-600 dark:hover:bg-stone-800 dark:focus:ring-stone-800"
         type="button"
       >
         Filtro
@@ -103,32 +103,63 @@
     </div>
     <div id="Grafico" class="flex flex-col w-full h-full items-center">
       <p class="mt-5 font-Montserrat font-bold underline">Grafico</p>
-      <div class="w-4/5 h-auto mx-80">
-        <canvas id="MiGrafica" width="300" height="400"></canvas>
+      <div class="w-3/5 h-3/5 lg:hidden">
+        <canvas id="MiGrafica" width="100" height="100"></canvas>
       </div>
     </div>
-    <div class="m-6 text-center bg-red-700 text-sm p-2">
-      <a
-        class="text-blue-800 underline-offset-2"
-        mr-3
-        href="https://github.com/fedemartinezs"
-        target="_blank"
-      >
-        <i class="fab fa-github"> </i>
-        GitHub
-      </a>
-      <a
-        class="text-blue-800 underline-offset-2"
-        href="https://twitter.com/fedemartinezs"
-        target="_blank"
-      >
-        <i class="fab fa-twitter"> </i>
-        Twitter
-      </a>
+    <div class="lg:w-3/5 h-3/5 mx-72">
+      <canvas id="MiGrafica2" width="300" height="200"></canvas>
     </div>
-    <p class="text-slate-700 mt-2">© Los 404.</p>
-  </body>
+    <footer class="m-6 text-center bg-gray-700 text-sm p-2 mt-40">
+      <div class="text-center items-center space-x-4">
+        <a
+          class="text-white-800 underline-offset-2"
+          mr-3
+          href="https://github.com/fedemartinezs"
+          target="_blank"
+        >
+          <i class="fab fa-github"> </i>
+          GitHub
+        </a>
+        <a
+          class="text-white-800 underline-offset-2"
+          href="https://twitter.com/fedemartinezs"
+          target="_blank"
+        >
+          <i class="fab fa-twitter"> </i>
+          Twitter
+        </a>
+      </div>
+      <p class="text-white-700 text-center mt-2">© Los 404.</p>
+    </footer>
+    <script>
+      // obtener elemento HTML(boton)
+      const buttonElement = document.querySelector("button");
+      // console.log(buttonElement);
 
+      // definir la funcion
+      function onButtonClick() {
+        // tomar numero
+        const contactNumber = document.getElementById("contact-number").value;
+
+        // tomar mensaje
+        const message = document.getElementById("message").value;
+
+        //reemplazar saltos de linea por cod para brk line en la URL
+        const res = message.split("\n").join("%0a");
+        // console.log(res);
+
+        // armar enlace
+        const link = `https://wa.me/${contactNumber}?text=${res}`;
+
+        // abrir enlace en nueva pestanha
+        window.open(link, "_blank");
+      }
+
+      // agregar Event Listener al boton
+      buttonElement.addEventListener("click", onButtonClick);
+    </script>
+  </body>
   <script>
     let miCanvas = document.getElementById("MiGrafica").getContext("2d");
 
@@ -137,15 +168,27 @@
     var chart = new Chart(miCanvas, {
       type: "line",
       data: {
-        labels: [
-          "Lunes",
-          "Martes",
-          "Miercoles",
-          "Jueves",
-          "Viernes",
-          "Sabado",
-          "Domingo",
+        labels: ["L", "M", "M", "J", "V", "S", "D"],
+        datasets: [
+          {
+            label: "Trafico",
+            backgroundColor: "rgb(0,0,0)",
+            boderColor: "rgb(0,255,0)",
+            data: [8060, 10453, 11654, 9843, 10345, 9843, 12455],
+          },
         ],
+      },
+    });
+  </script>
+  <script>
+    let miCanvas2 = document.getElementById("MiGrafica2").getContext("2d");
+
+    console.log(miCanvas2);
+
+    var chart = new Chart(miCanvas2, {
+      type: "line",
+      data: {
+        labels: ["L", "M", "M", "J", "V", "S", "D"],
         datasets: [
           {
             label: "Trafico",

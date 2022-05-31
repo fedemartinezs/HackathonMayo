@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>siuuu</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="w-30 h-20 mt-40 mx-80">
+      <canvas id="MiGrafica" width="30" height="20"></canvas>
+    </div>
+  </body>
+  <script>
+    let miCanvas = document.getElementById("MiGrafica").getContext("2d");
+
+    const datajs = JSON.parse("{{ datajson }}".replace(/&#34;/g, '"'));
+
+    console.log(datajs);
+    var labelsg = datajs.map(function (e) {
+      return e.fecha;
+    });
+    console.log(labelsg);
+    var datag = datajs.map(function (e) {
+      return e.autos;
+    });
+
+    var chart = new Chart(miCanvas, {
+      type: "line",
+      data: {
+        labels: labelsg,
+        datasets: [
+          {
+            label: "Trafico",
+            backgroundColor: "rgb(0,0,0)",
+            boderColor: "rgb(0,255,0)",
+            data: datag,
+          },
+        ],
+      },
+    });
+  </script>
+</html>
