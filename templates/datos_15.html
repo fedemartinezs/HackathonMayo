@@ -90,9 +90,9 @@
           </li>
           <li>
             <a
-              href="datos-15"
+              href="datos"
               class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >Últimos 15 Días</a
+              >Anterior</a
             >
           </li>
         </ul>
@@ -157,14 +157,15 @@
   <script>
     let miCanvas = document.getElementById("MiGrafica").getContext("2d");
 
-    const datajs = JSON.parse("{{ datajson }}".replace(/&#34;/g, '"'));
+    const datajs = JSON.parse("{{ df15 }}".replace(/&#34;/g, '"'));
+    const datajs15 = datajs.slice(-15);
 
-    console.log(datajs);
-    var labelsg = datajs.map(function (e) {
+    console.log(datajs15);
+    var labelsg = datajs15.map(function (e) {
       return e.fecha;
     });
     console.log(labelsg);
-    var datag = datajs.map(function (e) {
+    var datag = datajs15.map(function (e) {
       return e.autos;
     });
 
@@ -183,27 +184,4 @@
       },
     });
   </script>
-<<<<<<< HEAD
-  <script>
-    let miCanvas2 = document.getElementById("MiGrafica2").getContext("2d");
-
-    console.log(miCanvas2);
-
-    var chart = new Chart(miCanvas2, {
-      type: "line",
-      data: {
-        labels: ["L", "M", "M", "J", "V", "S", "D"],
-        datasets: [
-          {
-            label: "Trafico",
-            backgroundColor: "rgb(0,0,0)",
-            boderColor: "rgb(0,255,0)",
-            data: [8060, 10453, 11654, 9843, 10345, 9843, 12455],
-          },
-        ],
-      },
-    });
-  </script>
-=======
->>>>>>> 4b865019b54b1486ea2cbc93d28800b58408dbe2
 </html>
