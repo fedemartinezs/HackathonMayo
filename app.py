@@ -1,24 +1,31 @@
+from flask import Flask
+from flask.templating import render_template
 import pandas as pd
-from flask import Flask, render_template, request, redirect
+import json
+
 app = Flask(__name__)
 
-@app.route('/')
+@app.route("/")
+def inicio():
+    return render_template("inicio.html")
+
+@app.route('/datos')
 def home():
-    df = pd.read_csv('datos.txt', parse_dates=['fecha'], dayfirst=True)
+    df = pd.read_csv('datos.txt')
     df.to_string()
 
     def parse_to_dicc(datos):
         diccionary = datos.to_dict(orient='records')
-        print(diccionary)
+        return diccionary
 
-    parse_to_dicc(df)
+    data = parse_to_dicc(df)
+
+    datajson = json.dumps(data)
     
-    return render_template("mostrar_datos.html")
+    return render_template("mostrar_datos.html", datajson=datajson )
+
+if __name__ == "__main__" :
+    app.run(debug=True)
 #holaaa
-
-
-
-
-
 
 
