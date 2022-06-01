@@ -21,12 +21,7 @@
       rel="stylesheet"
       href="https://unpkg.com/flowbite@1.4.7/dist/flowbite.min.css"
     />
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"
-      integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
     <script>
       tailwind.config = {
         theme: {
@@ -104,13 +99,10 @@
       </div>
     </div>
     <div id="Grafico" class="flex flex-col w-full h-full items-center">
-      <p class="mt-5 font-Montserrat font-bold underline">Grafico</p>
-      <div class="w-3/5 h-3/5 lg:hidden">
-        <canvas id="MiGrafica" width="100" height="100"></canvas>
+      <h1 class="mt-5 font-Montserrat font-bold underline">Grafico</h1>
+      <div class="w-3/5 h-3/5">
+        <canvas id="MiGrafica" width="350" height="275"></canvas>
       </div>
-    </div>
-    <div class="lg:w-3/5 h-3/5 mx-72">
-      <canvas id="MiGrafica2" width="300" height="200"></canvas>
     </div>
     <footer class="m-6 text-center bg-gray-700 text-sm p-2 mt-40">
       <div class="text-center items-center space-x-4">
@@ -165,42 +157,30 @@
   <script>
     let miCanvas = document.getElementById("MiGrafica").getContext("2d");
 
-    console.log(miCanvas);
+    const datajs = JSON.parse("{{ datajson }}".replace(/&#34;/g, '"'));
+
+    console.log(datajs);
+    var labelsg = datajs.map(function (e) {
+      return e.fecha;
+    });
+    console.log(labelsg);
+    var datag = datajs.map(function (e) {
+      return e.autos;
+    });
 
     var chart = new Chart(miCanvas, {
       type: "line",
       data: {
-        labels: ["L", "M", "M", "J", "V", "S", "D"],
+        labels: labelsg,
         datasets: [
           {
             label: "Trafico",
             backgroundColor: "rgb(0,0,0)",
             boderColor: "rgb(0,255,0)",
-            data: [8060, 10453, 11654, 9843, 10345, 9843, 12455],
+            data: datag,
           },
         ],
       },
     });
   </script>
-    <script>
-
-      let miCanvas2 = document.getElementById("MiGrafica2").getContext("2d");
-  
-      console.log(miCanvas2);
-  
-      var chart = new Chart(miCanvas2, {
-        type: "line",
-        data: {
-          labels: ["L", "M", "M", "J", "V", "S", "D"],
-          datasets: [
-            {
-              label: "Trafico",
-              backgroundColor: "rgb(0,0,0)",
-              boderColor: "rgb(0,255,0)",
-              data: [8060, 10453, 11654, 9843, 10345, 9843, 12455],
-            },
-          ],
-        },
-      });
-    </script>
 </html>
