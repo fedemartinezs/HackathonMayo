@@ -1,5 +1,6 @@
 # importar librerias
 import math
+import datetime
 
 # Crear la clase rastreador
 
@@ -49,7 +50,7 @@ class Rastreador:
         with open('datos.txt','r+') as myfile:
             data = myfile.read()
             myfile.seek(0)
-            myfile.write(str(self.id_count)+","+"Lunes 28-05-2022")
+            myfile.write(str(345) +","+f"{datetime.date.today():%d-%m-%Y}")
             myfile.truncate()
 
 
