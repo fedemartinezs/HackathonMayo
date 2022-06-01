@@ -11,7 +11,7 @@ def inicio():
 
 @app.route('/datos')
 def home():
-    df = pd.read_csv('datos.txt')
+    df = pd.read_csv('vision/datos.txt')
     df.to_string()
 
     def parse_to_dicc(datos):
