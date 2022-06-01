@@ -26,7 +26,7 @@ def home():
 
 @app.route('/datos-15')
 def home2():
-    df = pd.read_csv('datos.txt')
+    df = pd.read_csv('vision/datos.txt')
     df.to_string()
 
     def parse_to_dicc(datos):
