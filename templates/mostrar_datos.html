@@ -21,7 +21,7 @@
       rel="stylesheet"
       href="https://unpkg.com/flowbite@1.4.7/dist/flowbite.min.css"
     />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
     <script>
       tailwind.config = {
         theme: {
@@ -175,30 +175,9 @@
         datasets: [
           {
             label: "Trafico",
-            backgroundColor: "rgb(0,0,0)",
-            boderColor: "rgb(0,255,0)",
+            backgroundColor: "rgb(0,0,50)",
+            boderColor: "rgb(0,0,100)",
             data: datag,
-          },
-        ],
-      },
-    });
-  </script>
-
-  <script>
-    let miCanvas2 = document.getElementById("MiGrafica2").getContext("2d");
-
-    console.log(miCanvas2);
-
-    var chart = new Chart(miCanvas2, {
-      type: "line",
-      data: {
-        labels: ["L", "M", "M", "J", "V", "S", "D"],
-        datasets: [
-          {
-            label: "Trafico",
-            backgroundColor: "rgb(0,0,0)",
-            boderColor: "rgb(0,255,0)",
-            data: [8060, 10453, 11654, 9843, 10345, 9843, 12455],
           },
         ],
       },
