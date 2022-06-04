@@ -9,7 +9,7 @@ Luego de instalar los requerimientos, deberás colocar un video (mp4) en la carp
 ## Screenshots :iphone:
 
 <p float="left">
-<img src="https://github.com/enrique-zarate/penguin-hackathon-pygame/blob/main/screenshots/1.png"  />
+<img src="https://github.com/enrique-zarate/penguin-hackathon-opencv/blob/main/screenshots/1.png"  />
 </p>
 
 ## Tecnologías usadas :sunglasses:
