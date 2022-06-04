@@ -1,5 +1,6 @@
 # importar librerias
 import math
+import datetime
 
 # Crear la clase rastreador
 
@@ -45,13 +46,8 @@ class Rastreador:
                 self.id_count = self.id_count + 1  
 
         print("Total identificados: ",self.id_count)
+        #fecha_de_hoy=f"{datetime.date.today():%d-%m-%Y}"
         #guardamos el contador de objetos detectados a un archivo txt
-        with open('datos.txt','r+') as myfile:
-            data = myfile.read()
-            myfile.seek(0)
-            myfile.write(str(self.id_count)+","+"Lunes 30-05-2022")
-            myfile.truncate()
-
 
         # limpiar la lista por puntos centrales para eliminar IDS que ya no se usan, por que estos nos consumen recursos y eso queremos evitar
         new_center_points = {}
@@ -62,4 +58,4 @@ class Rastreador:
 
         # actualizar lista con los ID no utilizados eliminados
         self.centro_puntos = new_center_points.copy()
-        return objeto_identificado
+        return objeto_identificado, self.id_count

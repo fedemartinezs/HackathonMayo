@@ -1,10 +1,10 @@
 #creador para logica de contador de autos
-# @creador: Fede G
 
 #librerias usadas
 import cv2
 from cv2 import THRESH_BINARY
 from cv2 import threshold
+import datetime
 
 # librerias locales
 from rastreador import Rastreador
@@ -63,7 +63,9 @@ while True:
             detecciones.append([x, y, ancho, alto])
 
     # Realizamos el seguimiento
-    info_id = seguidor.rastreo(detecciones)
+    info_id, cont = seguidor.rastreo(detecciones)
+
+    
 
     for inf in info_id:
         x, y, ancho, alto, id = inf
@@ -87,3 +89,9 @@ while True:
 cap.release()
 cv2.destroyAllWindows()
 
+with open('datos.txt','a') as myfile:
+    #data = myfile.read()
+    myfile.seek(0)
+    myfile.write(str(cont) +","+f"{datetime.date.today():%d-%m-%Y}")
+    myfile.write("\n")
+    myfile.truncate()

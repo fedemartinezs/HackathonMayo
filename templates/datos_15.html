@@ -90,9 +90,9 @@
           </li>
           <li>
             <a
-              href="datos-15"
+              href="datos"
               class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >Últimos 15 Días</a
+              >Anterior</a
             >
           </li>
         </ul>
@@ -126,18 +126,46 @@
       </div>
       <p class="text-white-700 text-center mt-2">© Los 404.</p>
     </footer>
+    <script>
+      // obtener elemento HTML(boton)
+      const buttonElement = document.querySelector("button");
+      // console.log(buttonElement);
+
+      // definir la funcion
+      function onButtonClick() {
+        // tomar numero
+        const contactNumber = document.getElementById("contact-number").value;
+
+        // tomar mensaje
+        const message = document.getElementById("message").value;
+
+        //reemplazar saltos de linea por cod para brk line en la URL
+        const res = message.split("\n").join("%0a");
+        // console.log(res);
+
+        // armar enlace
+        const link = `https://wa.me/${contactNumber}?text=${res}`;
+
+        // abrir enlace en nueva pestanha
+        window.open(link, "_blank");
+      }
+
+      // agregar Event Listener al boton
+      buttonElement.addEventListener("click", onButtonClick);
+    </script>
   </body>
   <script>
     let miCanvas = document.getElementById("MiGrafica").getContext("2d");
 
-    const datajs = JSON.parse("{{ datajson }}".replace(/&#34;/g, '"'));
+    const datajs = JSON.parse("{{ df15 }}".replace(/&#34;/g, '"'));
+    const datajs15 = datajs.slice(-15);
 
-    console.log(datajs);
-    var labelsg = datajs.map(function (e) {
+    console.log(datajs15);
+    var labelsg = datajs15.map(function (e) {
       return e.fecha;
     });
     console.log(labelsg);
-    var datag = datajs.map(function (e) {
+    var datag = datajs15.map(function (e) {
       return e.autos;
     });
 
