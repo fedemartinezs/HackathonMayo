@@ -126,33 +126,6 @@
       </div>
       <p class="text-white-700 text-center mt-2">© Los 404.</p>
     </footer>
-    <script>
-      // obtener elemento HTML(boton)
-      const buttonElement = document.querySelector("button");
-      // console.log(buttonElement);
-
-      // definir la funcion
-      function onButtonClick() {
-        // tomar numero
-        const contactNumber = document.getElementById("contact-number").value;
-
-        // tomar mensaje
-        const message = document.getElementById("message").value;
-
-        //reemplazar saltos de linea por cod para brk line en la URL
-        const res = message.split("\n").join("%0a");
-        // console.log(res);
-
-        // armar enlace
-        const link = `https://wa.me/${contactNumber}?text=${res}`;
-
-        // abrir enlace en nueva pestanha
-        window.open(link, "_blank");
-      }
-
-      // agregar Event Listener al boton
-      buttonElement.addEventListener("click", onButtonClick);
-    </script>
   </body>
   <script>
     let miCanvas = document.getElementById("MiGrafica").getContext("2d");
@@ -183,27 +156,4 @@
       },
     });
   </script>
-<<<<<<< HEAD
-  <script>
-    let miCanvas2 = document.getElementById("MiGrafica2").getContext("2d");
-
-    console.log(miCanvas2);
-
-    var chart = new Chart(miCanvas2, {
-      type: "line",
-      data: {
-        labels: ["L", "M", "M", "J", "V", "S", "D"],
-        datasets: [
-          {
-            label: "Trafico",
-            backgroundColor: "rgb(0,0,0)",
-            boderColor: "rgb(0,255,0)",
-            data: [8060, 10453, 11654, 9843, 10345, 9843, 12455],
-          },
-        ],
-      },
-    });
-  </script>
-=======
->>>>>>> 4b865019b54b1486ea2cbc93d28800b58408dbe2
 </html>

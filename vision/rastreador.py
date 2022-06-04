@@ -1,6 +1,5 @@
 # importar librerias
 import math
-import datetime
 
 # Crear la clase rastreador
 
